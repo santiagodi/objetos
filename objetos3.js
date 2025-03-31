@@ -1,37 +1,38 @@
-let filaEspera = {
-    clientes: [],
-    capacidad: 7,
+const filaEspera = (function() {
+    let clientes = [];
+    let capacidad = 7;
 
-    agregar(nombre, edad) {
-        if (this.clientes.length < this.capacidad) {
-            let cliente = { nombre, edad };  // Cada cliente es un objeto
-            this.clientes.push(cliente);
+    function agregar(nombre, edad) {
+        if (clientes.length < capacidad) {
+            let cliente = { nombre, edad };
+            clientes.push(cliente);
             console.log(`${nombre} ha sido agregado a la cola.`);
         } else {
             console.log("La cola está llena.");
         }
-    },
+    }
 
-    atender() {
-        if (this.clientes.length > 0) {
-            let atendido = this.clientes.shift();
+    function atender() {
+        if (clientes.length > 0) {
+            let atendido = clientes.shift();
             console.log(`${atendido.nombre} ha sido atendido.`);
         } else {
             console.log("No hay clientes en la cola.");
         }
-    },
+    }
 
-    mostrarClientes() {
-        if (this.clientes.length > 0) {
+    function mostrarClientes() {
+        if (clientes.length > 0) {
             console.log("Clientes en la cola:");
-            this.clientes.forEach((c, i) => console.log(`${i + 1}. ${c.nombre} (Edad: ${c.edad})`));
+            clientes.forEach((c, i) => console.log(`${i + 1}. ${c.nombre} (Edad: ${c.edad})`));
         } else {
             console.log("La cola está vacía.");
         }
     }
-};
 
-// Pruebas
+    return { agregar, atender, mostrarClientes };
+})();
+
 filaEspera.agregar("Juan", 25);
 filaEspera.agregar("Maria", 30);
 filaEspera.agregar("Carlos", 28);

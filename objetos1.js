@@ -1,30 +1,34 @@
-let hotel = {
-    habitaciones: {
-        1: { ocupada: true },
-        2: { ocupada: false },
-        3: { ocupada: true },
-        4: { ocupada: false },
-        5: { ocupada: true }
-    },
+function Habitacion(numero, ocupada) {
+    return { numero, ocupada };
+}
 
-    mostrarEstado() {
-        console.clear();
-
-        let disponibles = [];
-        let ocupadas = [];
-
-        for (let num in this.habitaciones) {
-            if (this.habitaciones[num].ocupada) {
-                ocupadas.push(`Habitación ${num}`);
-            } else {
-                disponibles.push(`Habitación ${num}`);
-            }
-        }
-
-        console.log("** Estado de las habitaciones **");
-        console.log("Disponibles:", disponibles.length > 0 ? disponibles.join(", ") : "Ninguna");
-        console.log("Ocupadas:", ocupadas.length > 0 ? ocupadas.join(", ") : "Ninguna");
-    }
+const habitaciones = {
+    1: Habitacion(1, true),
+    2: Habitacion(2, false),
+    3: Habitacion(3, true),
+    4: Habitacion(4, false),
+    5: Habitacion(5, true)
 };
 
-hotel.mostrarEstado();
+function mostrarEstado() {
+    console.clear();
+
+    let disponibles = [];
+    let ocupadas = [];
+
+    for (let num in habitaciones) {
+        let habitacion = habitaciones[num];
+        if (habitacion.ocupada) {
+            ocupadas.push("Habitación " + habitacion.numero);
+        } else {
+            disponibles.push("Habitación " + habitacion.numero);
+        }
+    }
+
+    console.log("** Estado de las habitaciones **");
+    console.log("Disponibles:", disponibles.length > 0 ? disponibles : "Ninguna");
+    console.log("Ocupadas:", ocupadas.length > 0 ? ocupadas : "Ninguna");
+}
+
+mostrarEstado();
+
